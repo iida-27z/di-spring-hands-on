@@ -68,7 +68,7 @@ public class BirthdayConsole {
         IO.println("\n--- 登録一覧 ---");
         logger.log("一覧表示処理を開始");
 
-        BirthdayRepository repository = new BirthdayRepository();
+        JdbcBirthdayRepository repository = new JdbcBirthdayRepository();
         List<Person> rows = repository.findAll();
 
         if (rows.isEmpty()) {
@@ -107,7 +107,7 @@ public class BirthdayConsole {
             return;
         }
 
-        BirthdayRepository repository = new BirthdayRepository();
+        JdbcBirthdayRepository repository = new JdbcBirthdayRepository();
         int insertedCount = repository.insert(name, birthDate);
         if (insertedCount > 0) {
             IO.println("登録が完了しました。");
@@ -137,7 +137,7 @@ public class BirthdayConsole {
             return;
         }
 
-        BirthdayRepository repository = new BirthdayRepository();
+        JdbcBirthdayRepository repository = new JdbcBirthdayRepository();
         int deletedCount = repository.deleteById(id);
 
         if (deletedCount > 0) {

@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 /**
  * 誕生日情報の永続化を担当するクラス。
  */
-public class BirthdayRepository {
+public class JdbcBirthdayRepository {
 
     private final JdbcClient jdbcClient;
 
@@ -19,7 +19,7 @@ public class BirthdayRepository {
      * 
      * @param dataSource データベース接続情報を提供する DataSource のインスタンス
      */
-    public BirthdayRepository(DataSource dataSource) {
+    public JdbcBirthdayRepository(DataSource dataSource) {
         this.jdbcClient = JdbcClient.create(dataSource);
     }
 

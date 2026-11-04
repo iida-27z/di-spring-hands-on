@@ -12,17 +12,17 @@ public class BirthdayConsole {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private final AppLogger logger;
-    private final BirthdayRepository birthdayRepository;
+    private final JdbcBirthdayRepository jdbcBirthdayRepository;
 
     /**
      * コンストラクタ。
      * 
      * @param logger ログ出力用のインスタンス
-     * @param birthdayRepository 誕生日情報の永続化を担当するリポジトリ
+     * @param jdbcBirthdayRepository 誕生日情報の永続化を担当するリポジトリ
      */
-    public BirthdayConsole(AppLogger logger, BirthdayRepository birthdayRepository) {
+    public BirthdayConsole(AppLogger logger, JdbcBirthdayRepository jdbcBirthdayRepository) {
         this.logger = logger;
-        this.birthdayRepository = birthdayRepository;
+        this.jdbcBirthdayRepository = jdbcBirthdayRepository;
     }
 
     /**
@@ -73,7 +73,7 @@ public class BirthdayConsole {
         IO.println("\n--- 登録一覧 ---");
         logger.log("一覧表示処理を開始");
 
-        List<Person> rows = birthdayRepository.findAll();
+        List<Person> rows = jdbcBirthdayRepository.findAll();
 
         if (rows.isEmpty()) {
             IO.println("データが登録されていません。");
@@ -111,7 +111,7 @@ public class BirthdayConsole {
             return;
         }
 
-        int insertedCount = birthdayRepository.insert(name, birthDate);
+        int insertedCount = jdbcBirthdayRepository.insert(name, birthDate);
         if (insertedCount > 0) {
             IO.println("登録が完了しました。");
             logger.log(String.format("新規登録: 名前=%s, 誕生日=%s を登録", name, inputBirthDate));
@@ -140,7 +140,7 @@ public class BirthdayConsole {
             return;
         }
 
-        int deletedCount = birthdayRepository.deleteById(id);
+        int deletedCount = jdbcBirthdayRepository.deleteById(id);
 
         if (deletedCount > 0) {
             IO.println("削除が完了しました。");

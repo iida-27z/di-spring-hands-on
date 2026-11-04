@@ -11,7 +11,7 @@ import com.zaxxer.hikari.HikariDataSource;
 /**
  * 誕生日情報の永続化を担当するクラス。
  */
-public class BirthdayRepository {
+public class JdbcBirthdayRepository {
 
     private static final String DB_HOST_ENV_KEY = "POSTGRES_HOST";
     private static final String DB_PORT_ENV_KEY = "POSTGRES_PORT";
@@ -23,7 +23,7 @@ public class BirthdayRepository {
     /**
      * コンストラクタ。
      */
-    public BirthdayRepository() {
+    public JdbcBirthdayRepository() {
         String dbHost = System.getenv(DB_HOST_ENV_KEY);
         String dbPort = System.getenv(DB_PORT_ENV_KEY);
         String dbName = System.getenv(DB_NAME_ENV_KEY);

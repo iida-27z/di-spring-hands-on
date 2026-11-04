@@ -19,9 +19,9 @@ public class Main {
         //    依存される部品（低レイヤー）から順にインスタンス化して依存関係は注入する
         // ------------------------------------------------------------------------
         DataSource dataSource = DatabaseConfig.createDataSource();
-        BirthdayRepository birthdayRepository = new BirthdayRepository(dataSource);
+        JdbcBirthdayRepository jdbcBirthdayRepository = new JdbcBirthdayRepository(dataSource);
         AppLogger logger = new AppLogger();
-        BirthdayConsole birthdayConsole = new BirthdayConsole(logger, birthdayRepository);
+        BirthdayConsole birthdayConsole = new BirthdayConsole(logger, jdbcBirthdayRepository);
         
         // ------------------------------------------------------------------------
         // 2. アプリケーションの実行
