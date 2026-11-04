@@ -1,0 +1,48 @@
+{
+    "name": "dev",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "initializeCommand": "[ -f .devcontainer/.env ] || cp .devcontainer/.env.example .devcontainer/.env",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "MS-CEINTL.vscode-language-pack-ja",
+                "vscjava.vscode-java-pack",
+                "vmware.vscode-boot-dev-pack",
+                "redhat.vscode-xml",
+                "mhutchie.git-graph",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-pg",
+                "ms-vscode.live-server"
+            ],
+            "settings": {
+                "workbench.colorTheme": "Dark 2026",
+                "java.configuration.runtimes": [
+                    {
+                        "name": "JavaSE-25",
+                        "path": "/opt/java/openjdk",
+                        "default": true
+                    }
+                ],
+                "java.jdt.ls.java.home": "/opt/java/openjdk",
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "java.compile.nullAnalysis.mode": "automatic",
+                "java.server.launchMode": "Standard",
+                "java.help.firstView": "none",
+                "java.help.showReleaseNotes": false,
+
+                "redhat.telemetry.enabled": false,
+                "sqltools.connections": [
+                    {
+                        "name": "postgres",
+                        "driver": "PostgreSQL",
+                        "connectString": "postgresql://${containerEnv:APP_USER}:${containerEnv:APP_PASSWORD}@${containerEnv:POSTGRES_HOST}:${containerEnv:POSTGRES_PORT}/${containerEnv:POSTGRES_DB}",
+                        "previewLimit": 100,
+                        "ssh": "Disabled"
+                    }
+                ]
+            }
+        }
+    }
+}
